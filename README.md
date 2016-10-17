@@ -49,7 +49,7 @@ macOS Sierra 10.12, Homebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテ�
 本来はここに認証をかける．
 
 * method: GET
-* URL: /user/<user_id>
+* URL: /user/\<user_id\>
 * response:
 ```json
 {
@@ -89,7 +89,7 @@ macOS Sierra 10.12, Homebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテ�
 先ほどのメソッドでの`exchange`からサーバー側ですれ違ったユーザの最新のプレイリストを取得して返す．
 
 * method: GET
-* URL: /user/<exchange>/playlist
+* URL: /user/\<exchange\>/playlist
 * response:
 ```json
 {
@@ -123,7 +123,7 @@ macOS Sierra 10.12, Homebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテ�
 自分のプレイリストをサーバーへ投げる．サーバー側で時刻判断をする．
 
 * method: POST
-* URL: /user/<user_id/playlist
+* URL: /user/\<user_id\>/playlist
 * data:
 ```json
 [
@@ -148,6 +148,7 @@ macOS Sierra 10.12, Homebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテ�
 前回よりも少ない曲数で投げると，サーバ上のプレイリストの曲も少なくなる（面倒だったのでこの更新が入った時点で一度サーバ側更新対象をdelしてる）．
 
 ## License
+
 MIT
 
 どれにしたらいいかよくわかってないしとりあえずMIT
