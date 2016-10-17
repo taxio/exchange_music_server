@@ -1,0 +1,4 @@
+MYSQL_USER = "hoge"
+MYSQL_PASS = "fuga"
+MYSQL_HOST = "localhost"
+MYSQL_DB_NAME = "exchange"

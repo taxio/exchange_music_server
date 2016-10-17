@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/*
+settings.py
+*.json
+example.py
+.python-version
