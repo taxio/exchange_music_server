@@ -2,11 +2,11 @@
 
 2016 HackU at KITの出し物のためのAPI Server．  
 
-Made by pudding that is the member of the team "tuna-kan".
+Made by pudding that is the member of the team named "tuna-kan".
 
 ## Requirements
 
-macOS Sierra 10.12, Hmebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテスト．
+macOS Sierra 10.12, Homebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテスト．
 
 * Python 3.5.2
 * click==6.6
@@ -16,7 +16,6 @@ macOS Sierra 10.12, Hmebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテス
 * Jinja2==2.8
 * MarkupSafe==0.23
 * PyMySQL==0.7.9
-* requests==2.11.1
 * SQLAlchemy==1.1.1
 * Werkzeug==0.11.11
 
@@ -150,3 +149,5 @@ macOS Sierra 10.12, Hmebrew 1.0.7, pyenv, 1.0.2, pyenv-virtualenv 1.0.0でテス
 
 ## License
 MIT
+
+どれにしたらいいかよくわかってないしとりあえずMIT
