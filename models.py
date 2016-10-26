@@ -1,3 +1,4 @@
+import hashlib
 from sqlalchemy import Column, INTEGER, VARCHAR, ForeignKey
 from sqlalchemy.orm import relation, backref
 from sqlalchemy.ext.declarative import declarative_base
@@ -30,7 +31,8 @@ class Clip(Base):
     id = Column(INTEGER, primary_key=True)
     title = Column(VARCHAR(length=128), nullable=False)
     artist = Column(VARCHAR(length=128), nullable=False)
-    album = Column(VARCHAR(length=128))
+    album = Column(VARCHAR(length=128), nullable=False)
+    unique_hash = Column(VARCHAR(length=255), nullable=False, unique=True)
 
     playlists = relation("PlayList", secondary="playlist_clip")
 
@@ -38,9 +40,15 @@ class Clip(Base):
         self.title = title
         self.artist = artist
         self.album = album
+        self.unique_hash = self.return_hash(title, artist, album)
 
     def __repr__(self):
         return "<Clip {}>".format(self.title)
+
+    @staticmethod
+    def return_hash(title, artist, album):
+        clip_info = title + artist + album
+        return hashlib.sha1(clip_info.encode('utf-8')).hexdigest()
 
 
 class PlayList(Base):
@@ -49,17 +57,17 @@ class PlayList(Base):
     id = Column(INTEGER, primary_key=True)
     year = Column(INTEGER)
     month = Column(INTEGER)
-    name = Column(INTEGER)
+    name = Column(VARCHAR(length=12))
     owner_id = Column(INTEGER, ForeignKey('users.id'))
     clips = relation("Clip", secondary="playlist_clip")
 
     def __init__(self, year, month):
         self.year = year
         self.month = month
-        self.name = year + month
+        self.name = str(year) + str(month)
 
     def __repr__(self):
-        return "<PlayList {}>".format(str(self.year) + str(self.month) + " of " + str(self.owner_id))
+        return "<PlayList {}>".format(self.name + " of " + str(self.owner_id))
 
 
 class User(Base):
@@ -69,7 +77,7 @@ class User(Base):
     name = Column(VARCHAR(length=32), nullable=False, unique=True)
     passwd = Column(VARCHAR(length=128), nullable=False)
 
-    exchange = relation("Exchange", uselist=False, backref='users')
+    exchange = relation("Exchange", backref='users')
     playlists = relation("PlayList", order_by="-PlayList.name")
 
     def __init__(self, name, passwd):
@@ -91,4 +99,4 @@ class Exchange(Base):
         self.exchange_id = exchange_id
 
     def __repr__(self):
-        return "<Exchange {}>".format(self.exchange_id)
+        return "<Exchange {}>".format(self.owner_id)
