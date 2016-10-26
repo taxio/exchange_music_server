@@ -2,3 +2,6 @@ MYSQL_USER = "hoge"
 MYSQL_PASS = "fuga"
 MYSQL_HOST = "localhost"
 MYSQL_DB_NAME = "exchange"
+
+SERVER_HOST = "192.168.xx.x"
+SERVER_PORT = "114514"
